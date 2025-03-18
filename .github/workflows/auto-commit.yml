@@ -23,9 +23,9 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Buat perubahan
+      - name: Create changes
         run: |
-          echo "Auto commit pada $(date)" >> auto_commit_log.txt
+          echo "Auto commit at $(date)" >> auto_commit_log.txt
           git add .
           git commit -m "Auto commit: $(date)" || echo "No changes for commit"
           git push
