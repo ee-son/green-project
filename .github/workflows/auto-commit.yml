@@ -10,16 +10,20 @@ on:
 jobs:
   auto-commit:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Memberikan izin menulis ke repository
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set Git identity
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Create changes
+      - name: Buat perubahan
         run: |
           echo "Auto commit pada $(date)" >> auto_commit_log.txt
           git add .
