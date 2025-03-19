@@ -10,22 +10,25 @@ on:
 jobs:
   auto-commit:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write  # Memberikan izin menulis ke repository
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set Git identity
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "IsanFaizun"
+          git config --global user.email "isan.faizun.hidar@mail.ugm.ac.id"
 
       - name: Create changes
         run: |
           echo "Auto commit at $(date)" >> auto_commit_log.txt
           git add .
-          git commit -m "Auto commit: $(date)" || echo "No changes for commit"
-          git push
+          git commit -m "Auto commit: $(date)" || echo "No changes to commit"
+
+      - name: Push changes
+        env:
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
+        run: |
+          git remote set-url origin https://IsanFaizun:${{ secrets.PAT_TOKEN }}@github.com/IsanFaizun/green-project.git
+          git push origin main
