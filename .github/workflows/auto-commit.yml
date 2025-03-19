@@ -28,7 +28,6 @@ jobs:
 
       - name: Push changes
         env:
-          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
+           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git remote set-url origin https://IsanFaizun:${{ secrets.PAT_TOKEN }}@github.com/IsanFaizun/green-project.git
-          git push origin main
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/IsanFaizun/green-project.git HEAD:main
