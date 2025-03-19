@@ -22,8 +22,8 @@ jobs:
 
       - name: Create changes
         run: |
-          echo "Auto commit at $(date)" >> auto_commit_log.txt
-          git add .
+          echo "Auto commit at $(date)" > auto_commit_log.txt
+          git add auto_commit_log.txt
           git commit -m "Auto commit: $(date)" || echo "No changes to commit"
 
       - name: Push changes
