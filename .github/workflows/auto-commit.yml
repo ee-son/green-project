@@ -7,6 +7,9 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+
 jobs:
   auto-commit:
     runs-on: ubuntu-latest
@@ -28,7 +31,7 @@ jobs:
 
       - name: Push changes
         env:
-          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git remote set-url origin https://IsanFaizun:${{ secrets.PAT_TOKEN }}@github.com/IsanFaizun/green-project.git
+          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/IsanFaizun/green-project.git
           git push origin main
